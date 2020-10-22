@@ -1,7 +1,8 @@
 <div align="center">
     <img src="due.png">
 </div>
------------------
+
+
 # duedate
 `duedate` is a simple CLI tool for tracking tasks and due dates written in C++11. A prototype of this project written in python is available at [fadedlamp42/py-duedate](https://github.com/fadedlamp42/py-duedate), which this project depreciates.
 
