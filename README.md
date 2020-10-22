@@ -8,8 +8,13 @@ The core idea is simple: assignments and similar time-sensitive obligations requ
 
 This iteration of the project was born out of a frustration with the slow execution inherent of a python script importing a data-processing library. I know that reducing dependencies and perhaps using caches or Cython cleverly could have alleviated this pain, but this frankly seemed more fun.
 
+## Installation
+Run `sudo make install` on any UNIX-based system.
+
 ## Usage
 `due [FILE 1] [FILE 2] ... [FILE n]`: running with no arguments attempts to read `~/hw.txt` for convenience of students.
+
+Each [FILE] may include a relative or absolute path such as `../file.txt` or `/home/work/file.txt`.
 
 Multiple file support allows for a separation of tasks for ease of organization (`homework.txt`, `events.txt`, `...`).
 
