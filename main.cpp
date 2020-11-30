@@ -69,11 +69,11 @@ bool parse_line(const string& line, const struct tm& today, due_date& due)
     ss >> temp_maximum >> temp_maximum; //ignore whitespace and DELIM
 
     //DEBUG
-    //cout << "name: "    << temp_name << endl;
-    //cout << "weekday: " << temp_weekday << endl;
-    //cout << "day: "     << temp_day << endl;
-    //cout << "month: "   << temp_month << endl;
-    //cout << "max: "     << temp_maximum << endl << endl;
+    cout << "name: "    << temp_name << endl;
+    cout << "weekday: " << temp_weekday << endl;
+    cout << "day: "     << temp_day << endl;
+    cout << "month: "   << temp_month << endl;
+    cout << "max: "     << temp_maximum << endl << endl;
 
     struct tm temp_date = today;
     temp_date.tm_sec  = 0;
@@ -98,8 +98,8 @@ bool parse_line(const string& line, const struct tm& today, due_date& due)
     if(temp_date.tm_wday == -1)
         return false;
 
-    if(0 <= temp_month && temp_month <= 11)
-        temp_date.tm_mon = temp_month-1;
+    if(1 <= temp_month && temp_month <= 12)
+        temp_date.tm_mon = temp_month-1; //[1, 12] -> [0, 11]
     else
         return false;
 
