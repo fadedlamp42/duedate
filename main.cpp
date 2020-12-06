@@ -88,7 +88,7 @@ bool parse_line(const string& line, const struct tm& today, due_date& due)
     temp_date.tm_wday = 
         temp_weekday=="Sunday"    ? 0 :
         temp_weekday=="Monday"    ? 1 :
-        temp_weekday=="Tueday"    ? 2 :
+        temp_weekday=="Tuesday"    ? 2 :
         temp_weekday=="Wednesday" ? 3 :
         temp_weekday=="Thursday"  ? 4 :
         temp_weekday=="Friday"    ? 5 :
