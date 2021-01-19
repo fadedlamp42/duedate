@@ -17,20 +17,24 @@ This iteration of the project was born out of a frustration with the slow execut
 Run `sudo make install` on any UNIX-based system.
 
 ## Usage
-`due [FILE 1] [FILE 2] ... [FILE n]`: running with no arguments attempts to read `~/hw.txt` for convenience of students.
+`due FILE [all | peek DAYS]`: running with no arguments attempts to read `~/hw.txt` for convenience of students.
 
-Each [FILE] may include a relative or absolute path such as `../file.txt` or `/home/work/file.txt`.
+[FILE] may be a relative or absolute path such as `../file.txt` or `/home/work/file.txt`.
 
-Multiple file support allows for a separation of tasks for ease of organization (`homework.txt`, `events.txt`, `...`).
+The `all` argument displays all dates regardless of their range.
+
+The `peek DAYS` argument shows all dates `DAYS` days into the future.
 
 ## Input file format
 Input files are assumed to be plain text files with one line holding one due date. Fields are delimited by `|` (ASCII 124) and leading spaces are ignored.
 
 Line format: `task name | {weekday} {month}/{day} | {days to complete}`
 
+Weekday is expected to be the full, title-case name ("Monday", "Wednesday")
+
 Year is currently assumed to be current year.
 
-Example: `Chinese homework | Sunday 03/29 | 4` signifies a due date title "Chinese homework" due on Sunday 03/29 that the user expects to work on for 4 days.
+Example: `Chinese homework | Sunday 03/29 | 4` signifies a due date titled "Chinese homework" due on Sunday 03/29 that the user expects to work on for 4 days.
 
 ## Example (ran on Saturday 03/28)
 Input: `due example.txt`

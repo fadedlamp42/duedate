@@ -1,5 +1,6 @@
 #include <cmath>
 #include <ctime>
+#include <cstdlib>
 
 #include <algorithm>
 #include <fstream>
@@ -17,13 +18,16 @@ struct due_date{
     int maximum;
 };
 
-bool process(due_date test_due, const time_t& today_seconds)
+bool process(due_date test_due, const time_t& today_seconds, bool all = false, int peek = -1)
 {
     struct tm& test_date = test_due.date;
     double seconds_difference = difftime(mktime(&test_date), today_seconds);
     double days_difference = seconds_difference/60/60/24;
 
-    if(days_difference>test_due.maximum)
+    if(peek != -1)
+        test_due.maximum = peek; //assumes reasonable number
+
+    if(days_difference>test_due.maximum && !all)
         return false;
 
     if(days_difference>0)
@@ -68,13 +72,6 @@ bool parse_line(const string& line, const struct tm& today, due_date& due)
     ss.ignore(3); //ignore " DELIM "
     ss >> temp_maximum >> temp_maximum; //ignore whitespace and DELIM
 
-    //DEBUG
-    //cout << "name: "    << temp_name << endl;
-    //cout << "weekday: " << temp_weekday << endl;
-    //cout << "day: "     << temp_day << endl;
-    //cout << "month: "   << temp_month << endl;
-    //cout << "max: "     << temp_maximum << endl << endl;
-
     struct tm temp_date = today;
     temp_date.tm_sec  = 0;
     temp_date.tm_min  = 0;
@@ -117,8 +114,27 @@ int main(int argc, char** argv){
 
     //establish file path
     string file_path = "~/hw.txt";
-    if(argc==2)
+    if(argc>=2)
         file_path = argv[1];
+
+    //parse options
+    string option;
+    bool all = false;
+    int peek = -1;
+
+    if(argc > 2)
+        option = argv[2];
+
+    if(argc == 3){
+        if(option == "all")
+            all = true;
+    }
+
+    if(argc == 4){
+        if(option == "peek"){
+            peek = atoi(argv[3]);
+        }
+    }
 
     //attempt to open file
     ifstream file; file.open(file_path);
@@ -141,7 +157,7 @@ int main(int argc, char** argv){
     //process list
     int count=0;
     for(auto due : due_list)
-        count += process(due, today_seconds);
+        count += process(due, today_seconds, all, peek);
 
     if(count==0)
         cout << "nothing due!" << endl;
