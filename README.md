@@ -17,7 +17,7 @@ This iteration of the project was born out of a frustration with the slow execut
 Run `sudo make install` on any UNIX-based system.
 
 ## Usage
-`due FILE [all | peek DAYS]`: running with no arguments attempts to read `~/hw.txt` for convenience of students.
+`due FILE [all | peek DAYS]`: running with no arguments first attempts to read the file specified by the `HW` environment variable, failing over to ~/hw.txt` for convenience of students.
 
 [FILE] may be a relative or absolute path such as `../file.txt` or `/home/work/file.txt`.
 

@@ -113,9 +113,16 @@ int main(int argc, char** argv){
     auto today_date = *localtime(&today_seconds);
 
     //establish file path
-    string file_path = "~/hw.txt";
+    string env_path = getenv("HW");
+    string file_path;
+
     if(argc>=2)
         file_path = argv[1];
+    else if(env_path.empty())
+        file_path = "~/hw.txt";
+    else
+        file_path = env_path;
+
 
     //parse options
     string option;
